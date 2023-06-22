@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <style>
+        body{
+            background-color: black;
+        }
+
+        .color{
+            position: absolute;
+            color: lime;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 50px;
+            font-family: orbitron;
+            letter-spacing: 7px;
+             
+        }
+    </style>
+</head>
+<body>
+    <div id="DigitalClock" class="color">
+    <script type="text/javascript">
+        function showTime(){  //To run the code second by second
+        var date=new Date();  //Gives current date and time from our system
+        var h=date.getHours();  //Gives hours
+        var m=date.getMinutes();   //Gives Minutes
+        var s=date.getUTCSeconds();  //Gives seconds
+        var session="AM";
+
+        if(h==0){
+            h=12;  //making 12 hour format but not 24
+        }
+
+        if(h>12){
+            h=h-12;  //12 hour format
+            session="PM";
+        }
+
+        /* To make double digits in clock
+        if(h<10){
+            h="0"+h;
+        }
+        
+        if(m<10){
+            m="0"+m;
+        }
+
+        if(s<10){
+            s="0"+s;
+        }*/
+
+        //another method to make double digits
+
+        h=(h<10)?"0"+h:h;
+        m=(m<10)?"0"+m:m;
+        s=(s<10)?"0"+s:s;
+
+        document.getElementById("DigitalClock").innerHTML=h+":"+m+":"+s+" "+session;
+
+        setTimeout(showTime,1000);  //rouns for every 1sec=1000 milisecond
+        }
+
+        showTime();
+    </script>
+    </div>
+</body>
+</html>
